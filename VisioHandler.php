@@ -4,6 +4,8 @@
  * An image handler which adds support for Visio (*.vsd, *.vsdx) files
  * via libvisio-utils (https://wiki.documentfoundation.org/DLP/Libraries/libvisio)
  *
+ * libvisio-utils 0.1.6+ recommended
+ *
  * @author Vitaliy Filippov <vitalif@mail.ru>
  * @copyright Copyright © 2017 Vitaliy Filippov
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
@@ -15,9 +17,10 @@ if (!defined('MEDIAWIKI'))
 // Extension credits that will show up on Special:Version
 $wgExtensionCredits['media'][] = array(
     'name'           => 'VisioHandler',
-    'version'        => '2017-12-20',
+    'version'        => new VisioHandlerVersion(),
     'author'         => 'Vitaliy Filippov',
     'url'            => 'http://wiki.4intra.net/VisioHandler',
+    'license-name'   => 'GPL-2.0+',
     'descriptionmsg' => 'visiohandler-desc',
 );
 
@@ -61,4 +64,14 @@ function egInstallVisioHandlerTypes1_23()
         $mm->mExtToMime['vsdx'] = 'application/vnd.ms-visio.drawing';
     if (empty($mm->mMimeToExt['application/vnd.ms-visio.drawing']))
         $mm->mMimeToExt['application/vnd.ms-visio.drawing'] = 'vsdx';
+}
+
+class VisioHandlerVersion
+{
+    public function __toString()
+    {
+        global $wgVisioToXhtml;
+        $v = trim(wfShellExec($wgVisioToXhtml.' --version'));
+        return '2017-12-20'.($v ? " ($v)" : " (vsd2xhtml not found)");
+    }
 }
