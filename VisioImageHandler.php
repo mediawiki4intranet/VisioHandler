@@ -27,14 +27,7 @@ class VisioImageHandler extends ImageHandler
 	);
 
 	function isEnabled() {
-		global $wgSVGConverters, $wgSVGConverter;
-		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
-			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering.\n" );
-
-			return false;
-		} else {
-			return true;
-		}
+		return true;
 	}
 
 	function mustRender( $file ) {
