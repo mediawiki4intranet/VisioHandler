@@ -31,7 +31,6 @@ $wgVisioToXhtml = '/usr/bin/vsd2xhtml';
 $dir = dirname(__FILE__) . '/';
 $wgExtensionMessagesFiles['VisioHandler'] = $dir . 'VisioHandler.i18n.php';
 $wgAutoloadClasses['VisioImageHandler'] = $dir . 'VisioImageHandler.php';
-$wgAutoloadClasses['SvgThumbnailImage'] = $dir . 'SvgThumbnailImage.php';
 $wgMediaHandlers['application/vnd.visio'] = 'VisioImageHandler';
 $wgMediaHandlers['application/vnd.ms-visio.drawing'] = 'VisioImageHandler';
 if (!in_array('vsd', $wgFileExtensions))
